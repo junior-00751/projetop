@@ -1,16 +1,17 @@
-// model/Usuario.java
 package model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements UserDetails {
 
     private Long id;
@@ -19,11 +20,11 @@ public class Usuario implements UserDetails {
     private String senha;
     private String cpf;
     private String endereco;
-    private String role;  // Exemplo: "USER"
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_" + role);
+        return List.of(() -> "ROLE_" + role);  // converte String role em GrantedAuthority
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;  // usamos email como username
+        return email;
     }
 
     @Override

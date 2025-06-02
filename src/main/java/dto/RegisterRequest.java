@@ -1,9 +1,10 @@
-// dto/RegisterRequest.java
 package dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class RegisterRequest {
     private String nome;
     private String email;
@@ -11,4 +12,3 @@ public class RegisterRequest {
     private String cpf;
     private String endereco;
 }
-

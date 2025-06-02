@@ -1,4 +1,3 @@
-// dto/AuthResponse.java
 package dto;
 
 import lombok.AllArgsConstructor;
