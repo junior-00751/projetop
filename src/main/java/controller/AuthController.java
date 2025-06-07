@@ -1,23 +1,30 @@
 package controller;
 
-import dto.RegisterRequest;
-import dto.AuthResponse;
-import service.AuthService;
+import entity.User;
+import service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import dto.LoginRequest;
+import dto.RegisterRequest;
+import org.springframework.http.ResponseEntity;
+
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class AuthController {
 
-    private final AuthService authService;
+  private final UserService userService;
 
-    @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        String token = authService.register(request);
-        return ResponseEntity.ok(new AuthResponse(token));
-    }
+  @PostMapping("/register")
+  public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
+    User user = userService.register(request);
+    return ResponseEntity.ok(user);
+  }
+
+  @PostMapping("/login")
+  public ResponseEntity<User> login(@RequestBody LoginRequest request) {
+    User user = userService.login(request);
+    return ResponseEntity.ok(user);
+  }
 }
